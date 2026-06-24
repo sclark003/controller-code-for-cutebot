@@ -20,7 +20,7 @@ basic.forever(function () {
         radio.sendString("L")
         basic.showArrow(ArrowNames.West)
         basic.pause(200)
-    } else if (input.acceleration(Dimension.X) < 400) {
+    } else if (input.acceleration(Dimension.X) > 400) {
         radio.sendString("R")
         basic.showArrow(ArrowNames.East)
         basic.pause(200)
