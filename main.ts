@@ -1,28 +1,28 @@
-input.onButtonPressed(Button.A, function () {
-    radio.sendString("F")
-    basic.showArrow(ArrowNames.North)
-})
 input.onButtonPressed(Button.AB, function () {
-    radio.sendString("S")
+    radio.sendValue("S", 1)
     basic.showIcon(IconNames.No)
 })
-input.onButtonPressed(Button.B, function () {
-    radio.sendString("B")
-    basic.showArrow(ArrowNames.South)
-})
 input.onGesture(Gesture.Shake, function () {
-    radio.sendString("H")
+    radio.sendValue("H", 1)
     basic.showIcon(IconNames.Surprised)
 })
+let y = 0
+let x = 0
 radio.setGroup(7)
 basic.forever(function () {
-    if (input.acceleration(Dimension.X) < -400) {
-        radio.sendString("L")
+    x = Math.idiv(input.acceleration(Dimension.X), 30)
+    y = Math.idiv(input.acceleration(Dimension.Y), 20)
+    radio.sendValue("x", x)
+    basic.pause(100)
+    radio.sendValue("y", y)
+    basic.pause(100)
+    if (y > 20) {
+        basic.showArrow(ArrowNames.North)
+    } else if (y < -20) {
+        basic.showArrow(ArrowNames.South)
+    } else if (x > 20) {
         basic.showArrow(ArrowNames.West)
-        basic.pause(200)
-    } else if (input.acceleration(Dimension.X) > 400) {
-        radio.sendString("R")
+    } else if (x < -20) {
         basic.showArrow(ArrowNames.East)
-        basic.pause(200)
     }
 })
