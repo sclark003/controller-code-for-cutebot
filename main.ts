@@ -10,8 +10,8 @@ let y = 0
 let x = 0
 radio.setGroup(7)
 basic.forever(function () {
-    x = Math.idiv(input.acceleration(Dimension.X), 30)
-    y = Math.idiv(input.acceleration(Dimension.Y), 20)
+    x = Math.idiv(input.acceleration(Dimension.X), 10)
+    y = Math.idiv(input.acceleration(Dimension.Y), 10)
     radio.sendValue("x", x)
     basic.pause(100)
     radio.sendValue("y", y)
